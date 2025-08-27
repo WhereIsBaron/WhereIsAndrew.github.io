@@ -1,22 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First GitHub Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 { color: #007acc; }
-    p { color: #333; }
-  </style>
-</head>
-<body>
-  <h1>Hello, World! 👋</h1>
-  <p>This is my first website hosted on <strong>GitHub Pages</strong>.</p>
-</body>
-</html>
+import { useState } from "react";
+import { Sun, Moon, Mail, Phone, MapPin, Download } from "lucide-react";
+
+export default function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  return (
+    <div className={darkMode ? "bg-gray-900 text-white min-h-screen" : "bg-gray-100 text-gray-900 min-h-screen"}>
+      {/* Navbar */}
+      <nav className="flex justify-between items-center px-10 py-4 shadow-md bg-opacity-80 backdrop-blur-lg fixed w-full z-50">
+        <h1 className="text-xl font-bold">Andrew Langeveldt</h1>
+        <ul className="flex gap-8 font-medium">
+          <li><a href="#home" className="hover:text-blue-400">Home</a></li>
+          <li><a href="#portfolio" className="hover:text-blue-400">Portfolio</a></li>
+          <li><a href="#cv" className="hover:text-blue-400">CV</a></li>
+          <li><a href="#contact" className="hover:text-blue-400">Contact</a></li>
+        </ul>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full hover:bg-gray-700"
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="flex flex-col justify-center items-center text-center pt-32 px-6">
+        <img
+          src="your-profile.jpg"
+          alt="profile"
+          className="w-28 h-28 rounded-full border-4 border-blue-500 mb-6"
+        />
+        <h2 className="text-3xl md:text-5xl font-bold">
+          Andrew Peter John <span className="text-blue-400">Langeveldt</span>
+        </h2>
+        <p className="mt-4 text-lg">Software Engineering Graduate specializing in Software Development and Web Development</p>
+        <p className="mt-2 text-sm text-gray-400">BSc (Hons) in Software Engineering with Multimedia from Limkokwing University of Creative Technology</p>
+        
+        <div className="flex gap-4 mt-6">
+          <a href="#contact" className="bg-blue-500 px-5 py-2 rounded-lg font-medium hover:bg-blue-600">Contact Me</a>
+          <a href="/cv.pdf" download className="bg-gray-700 px-5 py-2 rounded-lg font-medium hover:bg-gray-600 flex items-center gap-2">
+            <Download size={18}/> Download CV
+          </a>
+        </div>
+
+        <div className="flex gap-6 mt-6 text-sm">
+          <span className="flex items-center gap-2"><Mail size={16}/> andrewpjlangeveldt@gmail.com</span>
+          <span className="flex items-center gap-2"><Phone size={16}/> +267 76541693</span>
+          <span className="flex items-center gap-2"><MapPin size={16}/> Gaborone, Botswana</span>
+        </div>
+      </section>
+    </div>
+  );
+}
